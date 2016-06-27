@@ -3,12 +3,18 @@
     "description": "A plugable laravel package to generate time slots of particular time interval for any time range.",
     "type": "laravel dependant",
     "license": "opensource",
+    "keywords": ["laravel","Time slicer","Time Management","Time slot Plugin"],
     "authors": [
         {
             "name": "Manish",
             "email": "m.champaneri.20@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Mcodes\\Timeslicer\\": "src/"
+        }
+    },
     "minimum-stability": "dev",
     "require": {}
 }

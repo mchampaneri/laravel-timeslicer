@@ -12,9 +12,11 @@
     ],
     "autoload": {
         "psr-4": {
-            "Mcodes\\Timeslicer\\": "src/"
+            "mchampaneri\\timeslicer\\": "src/"
         }
     },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "mchampaneri/timeslicer": "^0.0.1"
+    }
 }

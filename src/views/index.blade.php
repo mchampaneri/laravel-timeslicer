@@ -4,10 +4,10 @@
           integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="
           crossorigin="anonymous">
 </script>
-<link rel="stylesheet" href="{{asset('/mcodes/resource/datepicker/css/datepicker.min.css')}}">
-<link rel="stylesheet" href="{{asset('/mcodes/resource/timepicker/wickedpicker.min.css')}}">
-<script src="{{asset('/mcodes/resource/datepicker/js/datepicker.min.js')}}"></script>
-<script src="{{asset('/mcodes/resource/timepicker/wickedpicker.min.js')}}"></script>
+<link rel="stylesheet" href="{{asset('mchampaneri/timeslicer/assets/datepicker/css/datepicker.min.css')}}">
+<link rel="stylesheet" href="{{asset('mchampaneri/timeslicer/assets/timepicker/wickedpicker.min.css')}}">
+<script src="{{asset('mchampaneri/timeslicer/assets/datepicker/js/datepicker.min.js')}}"></script>
+<script src="{{asset('mchampaneri/timeslicer/assets/timepicker/wickedpicker.min.js')}}"></script>
 <!-- End Of Resource Files -->
 
 <div class="card" >
@@ -37,9 +37,11 @@
             <div class="form-group">
                 <label for=""> Select Resource </label>
                 <select name="resource_id" id="" class="form-control">
-                    @foreach($resources as $resource)
-                        <option value="{{$resource->id}}" >{{$resource->name}}</option>
-                    @endforeach
+                    @if(isset($resources))
+                        @foreach($resources as $resource)
+                            <option value="{{$resource->id}}" >{{$resource->name}}</option>
+                        @endforeach
+                    @endif
                 </select>
             </div>
 
@@ -51,7 +53,7 @@
     </div>
 </div>
 <!-- Script To Init The Plugins -->
-<script src="{{asset('/mcodes/resource/datepicker/js/i18n/datepicker.en.js')}}"></script>
+<script src="{{asset('mchampaneri/timeslicer/assets/datepicker/js/i18n/datepicker.en.js')}}"></script>
 <script type="text/javascript">
 
     $(document).ready(function() {

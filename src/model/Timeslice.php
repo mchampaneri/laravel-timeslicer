@@ -1,6 +1,6 @@
 <?php
 
-namespace Mcodes\Timeslicer;
+namespace mchampaneri\timeslicer\model;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;

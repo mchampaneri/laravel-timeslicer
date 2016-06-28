@@ -1,6 +1,8 @@
 <?php
 
-namespace Mcodes\Timeslicer;
+namespace mchampaneri\timeslicer\controller;
+
+use mchampaneri\timeslicer\model\Timeslice;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,7 +13,7 @@ class TimeSlicerController extends Controller
 {
     public function index()
     {
-        return view('Timeslicer::index');
+        return view('mchampaneri.timeslicer.index');
     }
 
     /**
@@ -36,7 +38,7 @@ class TimeSlicerController extends Controller
     public function confirm($id)
     {
         $timeslice = Timeslice::find($id);
-        return view('Timeslicer::confirm')->with('timeslice',$timeslice);
+        return view('mchampaneri.timeslicer.confirm')->with('timeslice',$timeslice);
     }
 
     public function booked($id,Request $request)

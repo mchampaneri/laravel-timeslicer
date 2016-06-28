@@ -1,6 +1,6 @@
 <?php
 
-namespace Mcodes\Timeslicer;
+namespace mchampaneri\timeslicer;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -15,22 +15,23 @@ class TimeslicerServiceProvider extends ServiceProvider
     {
         // Enabling The Routes And Controller To The Plugin
         if( !$this->app->routesAreCached() )
-        {   require 'routes.php';
-            $this->app->make('Mcodes\Timeslicer\TimeSlicerController');
+        {   $this->app->make('mchampaneri\timeslicer\Controller\TimeSlicerController');
+            $this->app->make('mchampaneri\timeslicer\Model\Timeslice');
+            require 'routes.php';
         }
         $this->publishes([
-                    __DIR__.'/model/' => app_path('/') ]);
+                    __DIR__.'/model/' => app_path('/mchampaneri/timeslicer') ]);
 
         $this->publishes([
             realpath(__DIR__.'/migrations/') => $this->app->databasePath().'/migrations',
         ]);
         $this->publishes([
-            __DIR__.'/resources/' => public_path('mcodes/timeslicer/resources'),
+            __DIR__.'/resources/' => public_path('mchampaneri/timeslicer/assets/'),
         ], 'public');
 
-        $this->loadViewsFrom(__DIR__.'/views', 'Timeslicer');
+//        $this->loadViewsFrom(__DIR__.'/views', 'Timeslicer');
         $this->publishes([
-            __DIR__.'/views' => resource_path('views/mcodes/timeslicer'),
+            __DIR__.'/views' => resource_path('views/mchampaneri/timeslicer'),
         ]);
 
 

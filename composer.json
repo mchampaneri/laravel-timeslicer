@@ -17,6 +17,6 @@
     },
     "minimum-stability": "dev",
     "require": {
-        "mchampaneri/timeslicer": "^0.0.1"
+        
     }
 }

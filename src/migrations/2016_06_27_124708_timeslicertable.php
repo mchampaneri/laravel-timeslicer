@@ -18,7 +18,7 @@ class Timeslicertable extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->integer('resource_id');
-            $table->integer('obtainers_id');
+            $table->integer('consumer_id');
             $table->integer('status');
             $table->timestamps();
         });

@@ -9,6 +9,7 @@ class Timeslice extends Model
 {
 
     /**
+     * Generates The Time slices For The Given Input
      * @param $start_date
      * @param $end_date
      * @param $interval
@@ -22,15 +23,14 @@ class Timeslice extends Model
     {
         $date = Carbon::parse($start_date);
         $end_date = Carbon::parse($end_date);
-
         while( $date->lte( $end_date) )
         {
             $day_start = Carbon::parse($start_time);
             $day_end =  Carbon::parse($end_time);
             $add_minute = Carbon::parse($interval)->minute;
             $add_hour = Carbon::parse($interval)->hour;
-            $slot_start = $day_start;
 
+            $slot_start = $day_start;
             $slot_end =  Carbon::parse($start_time);
 
             $slot_end = $slot_end->addMinutes($add_minute);
@@ -59,13 +59,12 @@ class Timeslice extends Model
                 // Ready For Next Iteration //
             }
             $date =  $date->addDay();
-
         }
-
         return 0;
     }
 
     /**
+     * Convert's Time Input Having 12 hr clokc into 24 hr clock time
      * @param $string
      * @return static
      */
@@ -80,16 +79,57 @@ class Timeslice extends Model
         return $time;
     }
 
-    public static function timeslices($resource_id)
+    /**
+     * Returns The Object Of Timeslice From The input of the time slice id
+     * @param $resource_id
+     * @return mixed
+     */
+    public static function TimeSlices($resource_id)
     {
         $timeslices = Timeslice::where('resource_id',$resource_id)->get();
         return $timeslices;
     }
 
-    public static function book($timeslice_id,$obtainer_id)
+    /**
+     * Books The Current Time Slot For The Selected Consumer Object
+     * @param $consumer_id
+     */
+    public function Book($consumer_id)
     {
-        $timeslice = Timeslice::find($timeslice_id);
-        $timeslice->obtainers_id = $obtainer_id;
+        $timeslice->consumer_id = $consumer_id;
+        $timeslice->status = 1;
         $timeslice->save();
+    }
+
+    /**
+     * Makes The Slot Free From The Consumer Object
+     */
+    public function UnBook()
+    {
+        $timeslice->obtainers_id = 0;
+        $timeslice->status = 0;
+        $timeslice->save();
+    }
+
+    /**
+     * Returns The Object of Resource For Which The Slot Stands
+     * @return mixed
+     */
+    public function OfResource()
+    {
+        $resource_name = config('timeslicer.namespace').config('timeslicer.resource');
+        $resource_object = $resource_name::find($this->resource_id)->get();
+        return $resource_object;
+    }
+
+    /**
+     * Returns The Object of Consumer Which Wants To Consume That Slot
+     * @return mixed
+     */
+    public function ForConsumer()
+    {
+        $consumer_name = config('timeslicer.namespace').config('timeslicer.consumer');
+        $consumer_object = $consumer_name::find($this->consumer_id)->get();
+        return $consumer_object;
     }
 }

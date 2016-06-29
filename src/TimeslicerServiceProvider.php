@@ -25,14 +25,11 @@ class TimeslicerServiceProvider extends ServiceProvider
         $this->publishes([
             realpath(__DIR__.'/migrations/') => $this->app->databasePath().'/migrations',
         ]);
-        $this->publishes([
-            __DIR__.'/resources/' => public_path('mchampaneri/timeslicer/assets/'),
-        ], 'public');
 
-//        $this->loadViewsFrom(__DIR__.'/views', 'Timeslicer');
         $this->publishes([
-            __DIR__.'/views' => resource_path('views/mchampaneri/timeslicer'),
+            __DIR__.'config.php' => config_path('timeslicer.php'),
         ]);
+
 
 
     }

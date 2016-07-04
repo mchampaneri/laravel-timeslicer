@@ -15,7 +15,7 @@ class TimeslicerServiceProvider extends ServiceProvider
     {
         // Enabling The Routes And Controller To The Plugin
         if( !$this->app->routesAreCached() )
-        {   $this->app->make('mchampaneri\timeslicer\Controller\TimeSlicerController');
+        {  
             $this->app->make('mchampaneri\timeslicer\Model\Timeslice');
             require 'routes.php';
         }

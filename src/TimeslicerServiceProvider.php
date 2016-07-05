@@ -15,12 +15,11 @@ class TimeslicerServiceProvider extends ServiceProvider
     {
         // Enabling The Routes And Controller To The Plugin
         if( !$this->app->routesAreCached() )
-        {  
+        {
             $this->app->make('mchampaneri\timeslicer\Model\Timeslice');
             require 'routes.php';
         }
-        $this->publishes([
-                    __DIR__.'/model/' => app_path('/mchampaneri/timeslicer') ]);
+      
 
         $this->publishes([
             realpath(__DIR__.'/migrations/') => $this->app->databasePath().'/migrations',

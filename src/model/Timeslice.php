@@ -132,4 +132,50 @@ class Timeslice extends Model
         $consumer_object = $consumer_name::find($this->consumer_id)->get();
         return $consumer_object;
     }
+
+    /**
+   * Returns The List Of The Slots For That Particular Resource
+   * @param $id
+   */
+    public static function SliceOfResource($id)
+    {
+        $slices = Timeslice::where('resource_id',$id)
+                            ->orderby('date','asc')
+                            ->get();
+        return $slices;
+    }
+
+
+    /**
+       * Returns The Array Of TimeSlices Of The Resource For That
+       * Particular Date
+       * @param $id
+       * @param $date
+       * @return mixed
+       */
+      public static function SliceOfResourceDay($id, $for)
+      {
+          $date = Carbon::parse($for);
+          $slices = Timeslice::where('resource_id',$id)
+                              ->where('date',$date)
+                              ->get();
+          return $slices;
+      }
+
+      /**
+       * Returns List of Reserved slices of the Resource for the date
+       * @param $id
+       * @param $for
+       * @return mixed
+       */
+      public static function BookedSliceOfResourceDay($id, $for)
+      {
+          $date = Carbon::parse($for);
+          $slices = Timeslice::where('resource_id',$id)
+              ->where('date',$date)
+              ->where('status',1)
+              ->get();
+          return $slices;
+      }
+
 }

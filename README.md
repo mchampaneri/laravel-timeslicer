@@ -82,3 +82,24 @@ Laravel 5 package for generating time slots for a time duration
    ForConsumer()
    ```
    Returns the consumer object which is related with the current timeslice.
+
+   ```
+   SliceOfResource($id)
+   ```
+   Returns the all time slices created for the particular resource.
+
+   ```
+   SliceOfResourceDay($id, $on)
+   ```
+   Returns the all time slices of the resource **on** the particular **date**.
+
+   ```
+   BookedSliceOfResourceDay($id, $on)
+   ```
+    Returns the all booked time slices of the resource **on** the particular **date**.
+
+
+   ```
+   unBookedSliceOfResourceDay($id, $on)
+   ```
+    Returns the all unbooked/free time slices of the resource **on** the particular **date**.

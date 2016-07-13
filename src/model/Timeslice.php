@@ -96,9 +96,9 @@ class Timeslice extends Model
      */
     public function Book($consumer_id)
     {
-        $timeslice->consumer_id = $consumer_id;
-        $timeslice->status = 1;
-        $timeslice->save();
+        $this->consumer_id = $consumer_id;
+        $this->status = 1;
+        $this->save();
     }
 
     /**
@@ -106,9 +106,9 @@ class Timeslice extends Model
      */
     public function UnBook()
     {
-        $timeslice->obtainers_id = 0;
-        $timeslice->status = 0;
-        $timeslice->save();
+        $this->obtainers_id = 0;
+        $this->status = 0;
+        $this->save();
     }
 
     /**
@@ -177,5 +177,21 @@ class Timeslice extends Model
               ->get();
           return $slices;
       }
+
+      /**
+    * Returns the unbooked resource slice of the day
+    * @param $id
+    * @param $for
+    * @return mixed
+    */
+   public static function unBookedSliceOfResourceDay($id, $for)
+   {
+       $date = Carbon::parse($for);
+       $slices = Timeslice::where('resource_id',$id)
+           ->where('date',$date)
+           ->where('status',0)
+           ->get();
+       return $slices;
+   }
 
 }

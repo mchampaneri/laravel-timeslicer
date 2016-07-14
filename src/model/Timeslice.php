@@ -80,6 +80,26 @@ class Timeslice extends Model
     }
 
     /**
+    * Converts 24 hr clock time into 12 hr clock time
+    * @param $string
+    * @return string
+    */
+   public static function rTimeConverter($string)
+   {
+       $time = Carbon::parse($string);
+       if($time->hour > 12)
+       {
+           $time->hour = $time->hour - 12;
+           $time = $time->toTimeString();
+           return $time = $time.' PM';
+       }
+       else{
+           $time = $time->toTimeString();
+           return $time = $time.' AM';
+       }
+   }
+
+    /**
      * Returns The Object Of Timeslice From The input of the time slice id
      * @param $resource_id
      * @return mixed
@@ -192,6 +212,21 @@ class Timeslice extends Model
            ->where('status',0)
            ->get();
        return $slices;
+   }
+
+   /**
+    * Returns all the slices booked on that particular date
+    * @param $on
+    * @return mixed
+    */
+   public static function SliceBookedOnDay($on)
+   {
+       $date = Carbon::parse($on);
+       $slices = Timeslice::whereDate('updated_at','=',$date)
+                       ->where('status',1)
+                       ->get();
+       return $slices;
+
    }
 
 }

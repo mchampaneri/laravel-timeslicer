@@ -4,6 +4,7 @@ Laravel 5 package for generating time slots for a time duration
 ## Changes
   - 'GUI support Removed '
   - 'Enhanced backend support with new functions'
+  - 'Time Clock converter added'
 
 ## Description
 
@@ -103,3 +104,13 @@ Laravel 5 package for generating time slots for a time duration
    unBookedSliceOfResourceDay($id, $on)
    ```
     Returns the all unbooked/free time slices of the resource **on** the particular **date**.
+
+    ```
+    TimeConverter($string)
+    ```
+    Returns the input of 12hr clock in 24hr clock output
+
+    ```
+    rTimeConverter($string)
+    ```
+    Returns the input of 24hr clock in 12hr clock with appropriate suffix ie am/pm
